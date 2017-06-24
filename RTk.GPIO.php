@@ -240,7 +240,7 @@ class GPIO
 
 
   /*------------------------------------------------------------------------------
-    Read the GPIO level
+    Set the pull up/down mode for a GPIO pin
   ------------------------------------------------------------------------------*/
   private function pull_up_down($pin, $pull)
   {
@@ -270,7 +270,7 @@ class GPIO
 
 
   /*------------------------------------------------------------------------------
-    Sanitise a pin number doing the required conversions
+    Sanitise a pin number doing the required conversions to the RTk.GPIO API
   ------------------------------------------------------------------------------*/
   private function sanitise_pin($pin)
   {
@@ -295,7 +295,7 @@ class GPIO
 
 
   /*------------------------------------------------------------------------------
-    Find the device name for the RTk.GPIO
+    Find the device name for the RTk.GPIO interface
   ------------------------------------------------------------------------------*/
   private function find_rtk_gpio()
   {
@@ -310,5 +310,6 @@ class GPIO
 
     trigger_error('Cannot find your RTk.GPIO, is it connected?', E_USER_ERROR);
   }
+
 
 }
