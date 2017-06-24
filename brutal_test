@@ -18,10 +18,7 @@ $GPIO = new GPIO();
 // Set the pin numbering scheme we are going to use
 $GPIO->setmode(GPIO::BCM);
 
-// Set all pins to outputs
-$GPIO->setup(GPIO::PINS, GPIO::OUT);
-
-// Randomly change a pin output and mode every 100us
+// Randomly change a pin direction and read or write as fast as possible
 $pull_up_down = array(GPIO::PUD_OFF, GPIO::PUD_DOWN, GPIO::PUD_UP);
 while(TRUE)
 {
