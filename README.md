@@ -64,19 +64,19 @@ cd RTk.GPIO
 
 Using the driver in your own scripts is fairly simple...
 
-If you want to run your script directly from the command line it must start by telling Linux its PHP and include the php opening tag:
+If you want to run your script directly from the command line it must start by telling Linux it's PHP and then include the php opening tag:
 ```
 #!/usr/bin/php
 <?php
 ```
 
-Now we are in the PHP code, tell it you are going to use the RTk namespace (to save typing RTk\ before every command) and load the library:
+Now we are in the PHP code; tell it you are going to use the RTk namespace (to save typing RTk\ before every command) and load the library:
 ```
 namespace RTk;
 require_once('RTk.GPIO.php');
 ```
 
-Open a serial connection to your RTk.GPIO and call it $GPIO (See the examples file of how to use multiple RTk.GPIO's):
+Open a serial connection to your RTk.GPIO and call it $GPIO (see the examples file of how to use multiple RTk.GPIO's):
 ```
 $GPIO = new GPIO();
 ```
