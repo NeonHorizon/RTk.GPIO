@@ -14,7 +14,7 @@ class GPIO
 {
   // Board info
   const RPI_REVISION = 3;
-  const VERSION = 'RTk.GPIO 1.0.0';
+  const VERSION = 'RTk.GPIO 1.0.1';
 
   // Pin Numbering
   const BCM = 0;
@@ -96,7 +96,7 @@ class GPIO
       trigger_error('Cannot write to '.$this->device.', is your RTk.GPIO connected?', E_USER_ERROR);
 
     // Set the speed
-    exec('stty -F '.escapeshellarg($this->device).' speed 230400', $output, $result);
+    exec('stty -F '.escapeshellarg($this->device).' speed 230400 min 0 -brkint -icrnl -imaxbel -opost -onlcr -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke', $output, $result);
     if($result !== 0)
       trigger_error('Cannot set '.$this->device.' to 230400 baud, is this definitely a RTk.GPIO?', E_USER_ERROR);
 
