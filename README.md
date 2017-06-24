@@ -22,7 +22,7 @@ One of the reasons for its existence is PHP is particularly suited to making web
 
 ### Installation instructions
 
-Either [Download the latest zip file](https://github.com/NeonHorizon/RTk.GPIO/archive/master.zip) and extract it, or git clone git@github.com:NeonHorizon/RTk.GPIO.git
+Either [Download the latest zip file](https://github.com/NeonHorizon/RTk.GPIO/archive/master.zip) and extract it, or git clone https://github.com/NeonHorizon/RTk.GPIO.git
 
 The project contains the following files...
 
