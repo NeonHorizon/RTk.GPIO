@@ -14,7 +14,7 @@ This library is a driver for the RTk.GPIO for those that prefer (or have a requi
 
 It has been designed to match the official RPi.GPIO and RTk.GPIO python driver coding interfaces as closely as possible but obviously with PHP syntax.
 
-One of the reasons for its existence is PHP is particularly suited to making web interfaces. This means its often beneficial to use PHP instead of Python if you require a web interface for your RTk.GPIO.
+One of the reasons for its existence is PHP is particularly suited to making web interfaces. This means it's often beneficial to use PHP instead of Python if you require a web interface for your RTk.GPIO.
 
 ![RTk.GPIO](https://ryanteck.uk/671-large_default/rtkgpio.jpg)
 
