@@ -1,0 +1,44 @@
+#!/usr/bin/php
+<?php
+/*------------------------------------------------------------------------------
+  RTk.GPIO Brutal Test
+  Randomly changes the settings on the GPIO pins and reads/writes to them
+--------------------------------------------------------------------------------
+  Daniel Bull
+  daniel@neonhorizon.co.uk
+------------------------------------------------------------------------------*/
+
+// Load Driver
+namespace RTk;
+require_once('RTk.GPIO.php');
+
+// Open a connection to your RTk.GPIO
+$GPIO = new GPIO();
+
+// Set the pin numbering scheme we are going to use
+$GPIO->setmode(GPIO::BCM);
+
+// Set all pins to outputs
+$GPIO->setup(GPIO::PINS, GPIO::OUT);
+
+// Randomly change a pin output and mode every 100us
+$pull_up_down = array(GPIO::PUD_OFF, GPIO::PUD_DOWN, GPIO::PUD_UP);
+while(TRUE)
+{
+  $random_pin = rand(0, 27);
+  if(rand(0, 1))
+  {
+    // Read test
+    $GPIO->setup($random_pin, GPIO::IN);
+    $GPIO->input($random_pin);
+  }
+  else
+  {
+    // Write test
+    $GPIO->setup($random_pin, GPIO::OUT, array('pull_up_down' => $pull_up_down[rand(0, 2)]));
+    $GPIO->output($random_pin, rand(0, 1));
+  }
+}
+
+// Cleanup
+$GPIO->cleanup();

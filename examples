@@ -1,0 +1,64 @@
+#!/usr/bin/php
+<?php
+/*------------------------------------------------------------------------------
+  RTk.GPIO Examples
+  Some examples of how to use the RTk.GPIO driver
+--------------------------------------------------------------------------------
+  Daniel Bull
+  daniel@neonhorizon.co.uk
+------------------------------------------------------------------------------*/
+
+// Load Driver
+namespace RTk;
+require_once('RTk.GPIO.php');
+
+// Open a connection to your RTk.GPIO
+$GPIO = new GPIO();
+
+// You can specify the serial device explicitly if you have multiple RTk.GPIO's connected to one machine
+// $GPIO_2 = new GPIO('/dev/ttyUSB1');
+
+// Disable warnings if required
+// $GPIO->setwarnings(FALSE);
+
+// Set the pin numbering scheme we are going to use
+$GPIO->setmode(GPIO::BCM);
+
+// Set pin 2 as an output
+$GPIO->setup(2, GPIO::OUT);
+
+// Set pin 3 as a high output
+$GPIO->setup(3, GPIO::OUT, array('initial' => GPIO::HIGH));
+
+// Set pin 4 as a pulled down input
+$GPIO->setup(4, GPIO::IN, array('pull_up_down' => GPIO::PUD_DOWN));
+
+// Set pins 9, 10 and 11 as outputs
+$GPIO->setup(array(9, 10, 11), GPIO::OUT);
+
+// Set pins 14, 15 and 18 as out, out, in
+$GPIO->setup(array(14, 15, 18), array(GPIO::OUT, GPIO::OUT, GPIO::IN));
+
+// Set pins 2 as high
+$GPIO->output(2, GPIO::HIGH);
+
+// Set pins 9, 10 and 11 as high
+$GPIO->output(array(9, 10, 11), GPIO::HIGH);
+
+// Set pins 14 and 15 as high and low
+$GPIO->output(array(14, 15), array(GPIO::HIGH, GPIO::LOW));
+
+// Set all pins to outputs (BCM mode)
+// $GPIO->setup(GPIO::PINS, GPIO::OUT);
+
+// Set all pins to outputs (BOARD mode)
+// $GPIO->setup(array_keys(GPIO::PINS), GPIO::OUT);
+
+// Read pin 4
+echo 'Pin 4 = '.$GPIO->input(4);
+
+// Wait a second so you can see the output
+sleep(1);
+
+// Cleanup
+$GPIO->cleanup();

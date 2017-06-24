@@ -1,0 +1,44 @@
+#!/usr/bin/php
+<?php
+/*------------------------------------------------------------------------------
+  RTk.GPIO Read all
+  Scan all GPIO pins for changes
+--------------------------------------------------------------------------------
+  Daniel Bull
+  daniel@neonhorizon.co.uk
+------------------------------------------------------------------------------*/
+
+// Include Driver
+namespace Rtk;
+require_once('RTk.GPIO.php');
+
+// Start a driver instance
+$GPIO = new GPIO();
+
+// Set the pin numbering scheme we are going to use
+$GPIO->setmode(GPIO::BCM);
+
+// Set all pins to pulled down inputs
+$GPIO->setup(GPIO::PINS, GPIO::IN, array('pull_up_down' => GPIO::PUD_DOWN));
+
+// Make an array to keep note of the pin values
+foreach(GPIO::PINS as $pin)
+  $last[$pin] = '?';
+
+// Repeatedly scan all the pins
+while(TRUE)
+  foreach(GPIO::PINS as $pin)
+  {
+    // Get pin value
+    $new = $GPIO->input($pin);
+
+    // Has it changed?
+    if($new !== $last[$pin])
+    {
+      echo 'Pin '.$pin.' = '.$new.PHP_EOL;
+      $last[$pin] = $new;
+    }
+  }
+
+// Cleanup
+$GPIO->cleanup();

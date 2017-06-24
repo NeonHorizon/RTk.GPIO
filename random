@@ -1,0 +1,32 @@
+#!/usr/bin/php
+<?php
+/*------------------------------------------------------------------------------
+  RTk.GPIO Random
+  Randomly changes the output on the GPIO pins
+--------------------------------------------------------------------------------
+  Daniel Bull
+  daniel@neonhorizon.co.uk
+------------------------------------------------------------------------------*/
+
+// Load Driver
+namespace RTk;
+require_once('RTk.GPIO.php');
+
+// Open a connection to your RTk.GPIO
+$GPIO = new GPIO();
+
+// Set the pin numbering scheme we are going to use
+$GPIO->setmode(GPIO::BCM);
+
+// Set all pins to outputs
+$GPIO->setup(GPIO::PINS, GPIO::OUT);
+
+// Randomly change a pin output every 1000us
+while(TRUE)
+{
+  $GPIO->output(rand(0, 27), rand(0, 1));
+  usleep(1000);
+}
+
+// Cleanup
+$GPIO->cleanup();
