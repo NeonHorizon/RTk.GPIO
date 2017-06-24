@@ -1,7 +1,7 @@
 <?php
 /*------------------------------------------------------------------------------
   RTk.GPIO
-  PHP drivers for the RTk.GPIO module from Ryanteck
+  PHP drivers for the Ryanteck RTk.GPIO interface
   Designed to match the official RPi.GPIO python drivers as closely as possible
 --------------------------------------------------------------------------------
   Daniel Bull
