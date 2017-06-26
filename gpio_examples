@@ -8,15 +8,16 @@
   daniel@neonhorizon.co.uk
 ------------------------------------------------------------------------------*/
 
+
 // Load Driver
-namespace RTk;
-require_once('RTk.GPIO.php');
+require_once('PHP_GPIO/RTk.GPIO.php');
+use PHP_GPIO\RTK\GPIO as GPIO;
 
 // Open a connection to your RTk.GPIO
 $GPIO = new GPIO();
 
 // You can specify the serial device explicitly if you have multiple RTk.GPIO's connected to one machine
-// $GPIO_2 = new GPIO('/dev/ttyUSB1');
+// $GPIO = new GPIO('/dev/ttyUSB1');
 
 // Disable warnings if required
 // $GPIO->setwarnings(FALSE);

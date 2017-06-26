@@ -16,6 +16,8 @@ It has been designed to match the official RPi.GPIO and RTk.GPIO python driver c
 
 One of the reasons for its existence is PHP is particularly suited to making web interfaces. This means it's often beneficial to use PHP instead of Python if you require a web interface for your RTk.GPIO.
 
+Included is an LCD driver for the common LCD's on the market
+
 ![RTk.GPIO](https://ryanteck.uk/671-large_default/rtkgpio.jpg)
 
 ---
@@ -26,11 +28,13 @@ Either [Download the latest zip file](https://github.com/NeonHorizon/RTk.GPIO/ar
 
 The project contains the following files...
 
-* **RTk.GPIO.php** - this is the driver (the main file you need for your own projects)
-* **examples** - A script with some examples of how to use the driver
-* **random** - Output testing: An example script that changes all the GPIO's to outputs and randomly blinks them
-* **read_all** - Input testing: An example script that changes all the GPIO's to inputs and notifies when they go high or low
-* **brutal_test** - Full testing: An example script that brutally tests the RTk.GPIO by randomly changing the GPIO pin settings and reading/writing to them
+* **PHP_GPIO/RTk.GPIO.php** - this is the main driver (the file you need for your own projects)
+* **PHP_GPIO/Hitachi.LCD.php** - this is a Hitachi LCD driver (such as the common 16x2 LCDs) which can be used with RTk.GPIO
+* **gpio_examples** - A script with some examples of how to use the RTk.GPIO driver
+* **lcd_examples** - A script with some examples of how to use the Hitachi.LCD driver
+* **gpio_random_output** - An example script that changes all the GPIO's to outputs and randomly blinks them
+* **gpio_read_all** - An example script that changes all the GPIO's to inputs and notifies when they go high or low
+* **gpio_brutal_test** - A script that brutally tests the RTk.GPIO by randomly changing the GPIO pin settings and reading/writing to them
 * **README.md** - This file
 * **COPYING.txt** - The GPLv3 license
 
@@ -70,10 +74,10 @@ If you want to run your script directly from the command line it must start by t
 <?php
 ```
 
-Now we are in the PHP code; tell it you are going to use the RTk namespace (to save typing RTk\ before every command) and load the library:
+Now we are in the PHP code; load the RTk.GPIO driver and tell it you want to use it by the name GPIO:
 ```
-namespace RTk;
-require_once('RTk.GPIO.php');
+require_once('PHP_GPIO/RTk.GPIO.php');
+use PHP_GPIO\RTK\GPIO as GPIO;
 ```
 
 Open a serial connection to your RTk.GPIO and call it $GPIO (see the examples file of how to use multiple RTk.GPIO's):

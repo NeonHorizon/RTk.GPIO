@@ -1,0 +1,131 @@
+#!/usr/bin/php
+<?php
+/*------------------------------------------------------------------------------
+  RTk.LCD Examples
+  Some examples of how to use the RTk.LCD driver
+--------------------------------------------------------------------------------
+
+  This is the 5v Hitachi HDD44780 or KS0066U Compatible LCD Pinout
+  in standard 4 bit wiring mode (works with most displays):
+
+  LCD Pin  What it is       What pin you need to connect it to
+  1        Ground           Ground
+  2        Power            5v
+  3        Contrast         Adjusted between 0v and 5v*
+  4        Register Select  GPIO
+  5        Read/Write       Must be grounded!
+  6        Enable Signal    GPIO
+  7        Data Bus 0       Ground
+  8        Data Bus 1       Ground
+  9        Data Bus 2       Ground
+  10       Data Bus 3       Ground
+  11       Data Bus 4       GPIO
+  12       Data Bus 5       GPIO
+  13       Data Bus 6       GPIO
+  14       Data Bus 7       GPIO
+  15       LED Power        5v
+  16       LED Ground       Ground
+
+  *Contrast adjustment
+  Fit a 10k pot with one end on ground and the other end on 5v
+  then connect the centre pin of the pot to the LCD contrast pin 3.
+
+  If you wish to use the faster 8 bit mode (required for some advanced displays)
+  connect as above but change:
+
+  7        Data Bus 0       GPIO
+  8        Data Bus 1       GPIO
+  9        Data Bus 2       GPIO
+  10       Data Bus 3       GPIO
+
+--------------------------------------------------------------------------------
+
+  Commands
+  (May not be supported by all displays)
+
+  HOME                 Send the cursor home
+  TEXT_REVERSE         Type right to left
+  TEXT_REVERSE_SCROLL  Type right to left and scroll
+  TEXT_FORWARDS        Type left to right
+  TEXT_FORWARDS_SCROLL Type left to right and scroll
+  OFF                  Turn off the display
+  ON_NO_CURSOR         Turn on the display no cursor
+  ON_CURSOR            Turn on the display + cursor
+  ON_BLINK_CURSOR      Turn on the display + blink cursor
+  CURSOR_LEFT          Move the cursor left
+  CURSOR_RIGHT         Move the cursor right
+  SCROLL_LEFT          Scroll left
+  SCROLL_RIGHT         Scroll right
+  FONT_1_LINE_5X8      4bit, 1 line, 5x8 font
+  FONT_1_LINE_5X11     4bit, 1 line, 5x11 font
+  FONT_2_LINE_5X8      4bit, 2 line, 5x8 font
+  FONT_2_LINE_5X11     4bit, 2 line, 5x11 font
+
+--------------------------------------------------------------------------------
+  Daniel Bull
+  daniel@neonhorizon.co.uk
+------------------------------------------------------------------------------*/
+
+
+// Load GPIO Driver
+require_once('PHP_GPIO/RTk.GPIO.php');
+use PHP_GPIO\RTK\GPIO as GPIO;
+
+// Load LCD Driver
+require_once('PHP_GPIO/Hitachi.LCD.php');
+use PHP_GPIO\Hitachi\LCD as LCD;
+
+// Open a connection to your RTk.GPIO
+$GPIO = new GPIO();
+
+// Set the pin numbering scheme we are going to use
+$GPIO->setmode(GPIO::BCM);
+
+// Add the LCD to the GPIO
+$LCD = new LCD($GPIO);
+
+// Configure your LCD and how you have it wired
+$LCD->bits = 4;            // 4 or 8 bit mode
+$LCD->cols = 16;           // Number of columns on your LCD
+$LCD->rows = 2;            // Number of rows on your LCD
+$LCD->pins['RS'] = 17;     // The GPIO connected to the LCD Register Select (LCD pin 4)
+$LCD->pins['ES'] = 18;     // The GPIO connected to the LCD Enable Signal (LCD pin 6)
+// $LCD->pins['D0'] = 5;   // The GPIO connected to LCD Data Bus 0 (LCD pin 7)
+// $LCD->pins['D1'] = 6;   // The GPIO connected to LCD Data Bus 1 (LCD pin 8)
+// $LCD->pins['D2'] = 26;  // The GPIO connected to LCD Data Bus 2 (LCD pin 9)
+// $LCD->pins['D3'] = 27;  // The GPIO connected to LCD Data Bus 3 (LCD pin 10)
+$LCD->pins['D4'] = 22;     // The GPIO connected to LCD Data Bus 4 (LCD pin 11)
+$LCD->pins['D5'] = 23;     // The GPIO connected to LCD Data Bus 5 (LCD pin 12)
+$LCD->pins['D6'] = 24;     // The GPIO connected to LCD Data Bus 6 (LCD pin 13)
+$LCD->pins['D7'] = 25;     // The GPIO connected to LCD Data Bus 7 (LCD pin 14)
+
+// Initialise your LCD
+$LCD->initialise();
+
+// Send some text
+$LCD->output('Hello World');
+
+// Wait a second so we can view it
+sleep(1);
+
+// Clear the screen
+$LCD->command(LCD::CLEAR);
+
+// Output a couple of lines
+$LCD->output('Testing'.PHP_EOL.'My Display');
+
+// Wait a second, clear the screen and write testing in the middle of the second line
+sleep(1);
+$LCD->command(LCD::CLEAR);
+$LCD->position(4, 1);
+$LCD->output('Testing');
+
+// Scroll the screen right
+for($i = 0; $i < 5; $i++)
+{
+  sleep(1);
+  $LCD->command(LCD::SCROLL_RIGHT);
+}
+
+// Cleanup
+$GPIO->cleanup();

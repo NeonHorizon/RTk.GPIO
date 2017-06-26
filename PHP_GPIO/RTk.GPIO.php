@@ -7,14 +7,14 @@
   Daniel Bull
   daniel@neonhorizon.co.uk
 ------------------------------------------------------------------------------*/
-namespace RTk;
+namespace PHP_GPIO\RTk;
 
 
 class GPIO
 {
   // Board info
   const RPI_REVISION = 3;
-  const VERSION = 'RTk.GPIO 1.0.1';
+  const VERSION = 'RTk_GPIO 1.1.0';
 
   // Pin Numbering
   const BCM = 0;

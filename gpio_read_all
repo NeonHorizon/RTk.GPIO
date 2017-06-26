@@ -8,9 +8,10 @@
   daniel@neonhorizon.co.uk
 ------------------------------------------------------------------------------*/
 
-// Include Driver
-namespace Rtk;
-require_once('RTk.GPIO.php');
+
+// Load Driver
+require_once('PHP_GPIO/RTk.GPIO.php');
+use PHP_GPIO\RTK\GPIO as GPIO;
 
 // Start a driver instance
 $GPIO = new GPIO();
