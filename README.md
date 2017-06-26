@@ -54,7 +54,7 @@ sudo apt-get -y install php5-cli
 
 ### Quick Start
 
-The easiest way to make a start is to take a look at the [examples file](https://github.com/NeonHorizon/RTk.GPIO/blob/master/examples) which was part of your download. This includes descriptions of most of the commands you can perform.
+The easiest way to make a start is to take a look at the [examples file](https://github.com/NeonHorizon/RTk.GPIO/blob/master/gpio_examples) which was part of your download. This includes descriptions of most of the commands you can perform.
 You can test this script directly by plugging your RTk.GPIO into your computer (with nothing connected to the GPIO) and running the examples file from inside the directory:
 
 ```
