@@ -102,7 +102,7 @@ class LCD
 
     // Set all pins as outputs
     foreach($this->pins as $name => $pin)
-      $this->gpio->setup($this->pins, $this->gpio::OUT);
+      $this->gpio->setup($pin, $this->gpio::OUT);
 
     // Switch into 4 bit mode if applicable
     if($this->bits == 4)
@@ -198,10 +198,10 @@ class LCD
   private function set_mode($character_mode)
   {
     // Make sure the enable line is low before we start
-    $this->gpio->output($this->pins['ES'], 0);
+    $this->gpio->output($this->pins['ES'], $this->gpio::LOW);
 
     // Set Register Select to the correct mode
-    $this->gpio->output($this->pins['RS'], $character_mode ? 1 : 0);
+    $this->gpio->output($this->pins['RS'], $character_mode ? $this->gpio::HIGH : $this->gpio::LOW);
 
     // Wait for the display to catch up
     time_nanosleep(0, self::TIMING_TSU1);
@@ -218,20 +218,20 @@ class LCD
       trigger_error('Invalid send_byte()', E_USER_ERROR);
 
     // Set high nibble
-    $this->gpio->output($this->pins['D4'], ($value & 0b00010000) > 0 ? 1 : 0);
-    $this->gpio->output($this->pins['D5'], ($value & 0b00100000) > 0 ? 1 : 0);
-    $this->gpio->output($this->pins['D6'], ($value & 0b01000000) > 0 ? 1 : 0);
-    $this->gpio->output($this->pins['D7'], ($value & 0b10000000) > 0 ? 1 : 0);
+    $this->gpio->output($this->pins['D4'], ($value & 0b00010000) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
+    $this->gpio->output($this->pins['D5'], ($value & 0b00100000) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
+    $this->gpio->output($this->pins['D6'], ($value & 0b01000000) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
+    $this->gpio->output($this->pins['D7'], ($value & 0b10000000) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
 
     // Srobe if we are in 4 bit mode
     if($this->bits == 4)
       $this->strobe();
 
     // Set low nibble
-    $this->gpio->output($this->pins[$this->bits == 4 ? 'D4' : 'D1'], ($value & 0b00000001) > 0 ? 1 : 0);
-    $this->gpio->output($this->pins[$this->bits == 4 ? 'D5' : 'D2'], ($value & 0b00000010) > 0 ? 1 : 0);
-    $this->gpio->output($this->pins[$this->bits == 4 ? 'D6' : 'D3'], ($value & 0b00000100) > 0 ? 1 : 0);
-    $this->gpio->output($this->pins[$this->bits == 4 ? 'D7' : 'D4'], ($value & 0b00001000) > 0 ? 1 : 0);
+    $this->gpio->output($this->pins[$this->bits == 4 ? 'D4' : 'D1'], ($value & 0b00000001) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
+    $this->gpio->output($this->pins[$this->bits == 4 ? 'D5' : 'D2'], ($value & 0b00000010) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
+    $this->gpio->output($this->pins[$this->bits == 4 ? 'D6' : 'D3'], ($value & 0b00000100) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
+    $this->gpio->output($this->pins[$this->bits == 4 ? 'D7' : 'D4'], ($value & 0b00001000) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
 
     // Strobe data
     $this->strobe();
@@ -245,9 +245,9 @@ class LCD
   ----------------------------------------------------------------------------*/
   private function strobe()
   {
-    $this->gpio->output($this->pins['ES'], 1);
+    $this->gpio->output($this->pins['ES'], $this->gpio::HIGH);
     time_nanosleep(0, self::TIMING_TW);
-    $this->gpio->output($this->pins['ES'], 0);
+    $this->gpio->output($this->pins['ES'], $this->gpio::LOW);
     time_nanosleep(0, self::TIMING_TH2);
   }
 
