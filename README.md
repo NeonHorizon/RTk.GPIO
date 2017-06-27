@@ -16,7 +16,7 @@ It has been designed to match the official RPi.GPIO and RTk.GPIO python driver c
 
 One of the reasons for its existence is PHP is particularly suited to making web interfaces. This means it's often beneficial to use PHP instead of Python if you require a web interface for your RTk.GPIO.
 
-Included is an LCD driver for the common LCD's on the market as well as a driver for the Noritake GU256x64D-7000 Matrix VFD display
+Included is an LCD driver for the common LCD's on the market as well as a driver for the Noritake GU256x64D-7000 Matrix VFD
 
 ![RTk.GPIO](https://ryanteck.uk/671-large_default/rtkgpio.jpg)
 
