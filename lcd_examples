@@ -1,8 +1,8 @@
 #!/usr/bin/php
 <?php
 /*------------------------------------------------------------------------------
-  RTk.LCD Examples
-  Some examples of how to use the RTk.LCD driver
+  Hitatchi.LCD Examples
+  Some examples of how to use the Hitatchi.LCD driver
 --------------------------------------------------------------------------------
 
   This is the 5v Hitachi HDD44780 or KS0066U Compatible LCD Pinout
