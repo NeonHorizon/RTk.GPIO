@@ -223,7 +223,7 @@ class LCD
     $this->gpio->output($this->pins['D6'], ($value & 0b01000000) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
     $this->gpio->output($this->pins['D7'], ($value & 0b10000000) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
 
-    // Srobe if we are in 4 bit mode
+    // Strobe if we are in 4 bit mode
     if($this->bits == 4)
       $this->strobe();
 
