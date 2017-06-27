@@ -16,7 +16,7 @@ It has been designed to match the official RPi.GPIO and RTk.GPIO python driver c
 
 One of the reasons for its existence is PHP is particularly suited to making web interfaces. This means it's often beneficial to use PHP instead of Python if you require a web interface for your RTk.GPIO.
 
-Included is an LCD driver for the common LCD's on the market
+Included is an LCD driver for the common LCD's on the market as well as a driver for the Noritake GU256x64D-7000 Matrix VFD display
 
 ![RTk.GPIO](https://ryanteck.uk/671-large_default/rtkgpio.jpg)
 
@@ -30,8 +30,10 @@ The project contains the following files...
 
 * **PHP_GPIO/RTk.GPIO.php** - this is the main driver (the file you need for your own projects)
 * **PHP_GPIO/Hitachi.LCD.php** - this is a Hitachi LCD driver (such as the common 16x2 LCDs) which can be used with RTk.GPIO
+* **PHP_GPIO/Noritake.VFD.php** - this is a driver for the Noritake GU256x64D-7000 VFD which can be used with RTk.GPIO
 * **gpio_examples** - A script with some examples of how to use the RTk.GPIO driver
 * **lcd_examples** - A script with some examples of how to use the Hitachi.LCD driver
+* **vfd_examples** - A script with some examples of how to use the Noritake.VFD driver 
 * **gpio_random_output** - An example script that changes all the GPIO's to outputs and randomly blinks them
 * **gpio_read_all** - An example script that changes all the GPIO's to inputs and notifies when they go high or low
 * **gpio_brutal_test** - A script that brutally tests the RTk.GPIO by randomly changing the GPIO pin settings and reading/writing to them

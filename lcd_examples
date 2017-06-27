@@ -8,23 +8,23 @@
   This is the 5v Hitachi HDD44780 or KS0066U compatible LCD pinout
   in standard 4 bit wiring mode (works with most displays):
 
-  LCD Pin  What it is       What pin you need to connect it to
-  1        Ground           Ground
-  2        Power            5v
-  3        Contrast         Adjusted between 0v and 5v*
-  4        Register Select  GPIO
-  5        Read/Write       Must be grounded!
-  6        Enable Signal    GPIO
-  7        Data Bus 0       Ground
-  8        Data Bus 1       Ground
-  9        Data Bus 2       Ground
-  10       Data Bus 3       Ground
-  11       Data Bus 4       GPIO
-  12       Data Bus 5       GPIO
-  13       Data Bus 6       GPIO
-  14       Data Bus 7       GPIO
-  15       LED Power        5v
-  16       LED Ground       Ground
+    LCD Pin  What it is       What pin you need to connect it to
+    1        Ground           Ground
+    2        Power            5v
+    3        Contrast         Adjusted between 0v and 5v*
+    4        Register Select  GPIO
+    5        Read/Write       Must be grounded!
+    6        Enable Signal    GPIO
+    7        Data Bus 0       Ground
+    8        Data Bus 1       Ground
+    9        Data Bus 2       Ground
+    10       Data Bus 3       Ground
+    11       Data Bus 4       GPIO
+    12       Data Bus 5       GPIO
+    13       Data Bus 6       GPIO
+    14       Data Bus 7       GPIO
+    15       LED Power        5v
+    16       LED Ground       Ground
 
   *Contrast adjustment
   Fit a 10k pot with one end on ground and the other end on 5v
@@ -33,33 +33,33 @@
   If you wish to use the faster 8 bit mode (required for some advanced displays)
   connect as above but change:
 
-  7        Data Bus 0       GPIO
-  8        Data Bus 1       GPIO
-  9        Data Bus 2       GPIO
-  10       Data Bus 3       GPIO
+    7        Data Bus 0       GPIO
+    8        Data Bus 1       GPIO
+    9        Data Bus 2       GPIO
+    10       Data Bus 3       GPIO
 
 --------------------------------------------------------------------------------
 
   Commands
   (May not be supported by all displays)
 
-  HOME                 Send the cursor home
-  TEXT_REVERSE         Type right to left
-  TEXT_REVERSE_SCROLL  Type right to left and scroll
-  TEXT_FORWARDS        Type left to right
-  TEXT_FORWARDS_SCROLL Type left to right and scroll
-  OFF                  Turn off the display
-  ON_NO_CURSOR         Turn on the display no cursor
-  ON_CURSOR            Turn on the display + cursor
-  ON_BLINK_CURSOR      Turn on the display + blink cursor
-  CURSOR_LEFT          Move the cursor left
-  CURSOR_RIGHT         Move the cursor right
-  SCROLL_LEFT          Scroll left
-  SCROLL_RIGHT         Scroll right
-  FONT_1_LINE_5X8      4bit, 1 line, 5x8 font
-  FONT_1_LINE_5X11     4bit, 1 line, 5x11 font
-  FONT_2_LINE_5X8      4bit, 2 line, 5x8 font
-  FONT_2_LINE_5X11     4bit, 2 line, 5x11 font
+    HOME                 Send the cursor home
+    TEXT_REVERSE         Type right to left
+    TEXT_REVERSE_SCROLL  Type right to left and scroll
+    TEXT_FORWARDS        Type left to right
+    TEXT_FORWARDS_SCROLL Type left to right and scroll
+    OFF                  Turn off the display
+    ON_NO_CURSOR         Turn on the display no cursor
+    ON_CURSOR            Turn on the display + cursor
+    ON_BLINK_CURSOR      Turn on the display + blink cursor
+    CURSOR_LEFT          Move the cursor left
+    CURSOR_RIGHT         Move the cursor right
+    SCROLL_LEFT          Scroll left
+    SCROLL_RIGHT         Scroll right
+    FONT_1_LINE_5X8      4bit, 1 line, 5x8 font
+    FONT_1_LINE_5X11     4bit, 1 line, 5x11 font
+    FONT_2_LINE_5X8      4bit, 2 line, 5x8 font
+    FONT_2_LINE_5X11     4bit, 2 line, 5x11 font
 
 --------------------------------------------------------------------------------
   Daniel Bull

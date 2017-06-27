@@ -1,0 +1,135 @@
+#!/usr/bin/php
+<?php
+/*------------------------------------------------------------------------------
+  Noritake.VFD Examples
+  Some examples of how to use the Noritake.VFD driver
+--------------------------------------------------------------------------------
+
+  This is the Noritake GU256x64D-7000 VFD pinout with the JRB jumper linked
+  across C and B:
+
+    VFD Pin  What it is       What pin you need to connect it to
+    1        Ground           Ground
+    2        Power            5v
+    3        Busy             GPIO
+    4        Register Select  Ground
+    5        /Write           GPIO
+    6        /Read            5v
+    7        Data Bus 0       GPIO
+    8        Data Bus 1       GPIO
+    9        Data Bus 2       GPIO
+    10       Data Bus 3       GPIO
+    11       Data Bus 4       GPIO
+    12       Data Bus 5       GPIO
+    13       Data Bus 6       GPIO
+    14       Data Bus 7       GPIO
+
+--------------------------------------------------------------------------------
+
+  Functions:
+
+    reset()                        Reset the screen
+    power(enable)                  Turn on and off the power
+    brightness(brightness)         Adjust the brightness between 0 (off) and 8 (full)
+    screensaver(blink)             Turn off or inverse video blink the screen
+
+    output(string)                 Output some text
+    clear()                        Clear the screen
+    home()                         Move the cursor to the top left
+    font(width, proportional, scale_x, scale_y)
+                                   wide on or off, proportional on or off, scale is 1 to 4, scale_y is 1 to 2
+
+    inverse(enable)                Inverse video on off
+    overlay(mode)                  Mode options are VFD::OVERLAY_NONE, VFD::OVERLAY_OR, VFD::OVERLAY_AND or VFD::OVERLAY_XOR
+    wrap(enable)                   Immediately wrap text
+    auto_scroll(mode, speed)       Mode options are VFD::AUTO_SCROLL_WRAP, VFD::AUTO_SCROLL_VERTICAL, VFD::AUTO_SCROLL_HORIZONTAL
+                                   speed only works in horizontal mode as is 0 (slow) to 31 (fast)
+    scroll(amount, repeat, delay)  Amount is the Y distance, to scroll X multiply by the number of rows (Eg 8), repeat is 0 to 65535, delay is 0 to 255
+
+--------------------------------------------------------------------------------
+  Daniel Bull
+  daniel@neonhorizon.co.uk
+------------------------------------------------------------------------------*/
+
+
+// Load GPIO Driver
+require_once('PHP_GPIO/RTk.GPIO.php');
+use PHP_GPIO\RTK\GPIO as GPIO;
+
+// Load VFD Driver
+require_once('PHP_GPIO/Noritake.VFD.php');
+use PHP_GPIO\Noritake\VFD as VFD;
+
+// Open a connection to your RTk.GPIO
+$GPIO = new GPIO();
+
+// Set the pin numbering scheme we are going to use
+$GPIO->setmode(GPIO::BCM);
+
+// Add the VFD to the GPIO
+$VFD = new VFD($GPIO);
+
+// Configure how you have your VFD wired
+$VFD->pins['Busy'] = 17;   // The GPIO connected to the Busy Signal (VFD pin 3)
+$VFD->pins['Write'] = 18;  // The GPIO connected to the Write Signal (VFD pin 5)
+$VFD->pins['D0'] = 5;      // The GPIO connected to VFD Data Bus 0 (VFD pin 7)
+$VFD->pins['D1'] = 6;      // The GPIO connected to VFD Data Bus 1 (VFD pin 8)
+$VFD->pins['D2'] = 26;     // The GPIO connected to VFD Data Bus 2 (VFD pin 9)
+$VFD->pins['D3'] = 27;     // The GPIO connected to VFD Data Bus 3 (VFD pin 10)
+$VFD->pins['D4'] = 22;     // The GPIO connected to VFD Data Bus 4 (VFD pin 11)
+$VFD->pins['D5'] = 23;     // The GPIO connected to VFD Data Bus 5 (VFD pin 12)
+$VFD->pins['D6'] = 24;     // The GPIO connected to VFD Data Bus 6 (VFD pin 13)
+$VFD->pins['D7'] = 25;     // The GPIO connected to VFD Data Bus 7 (VFD pin 14)
+
+// Initialise your VFD
+$VFD->initialise();
+
+// Send some text
+$VFD->output('Hello World');
+
+// Wait a second so we can view it
+sleep(1);
+
+// Clear the screen
+$VFD->clear();
+
+// Output a couple of lines
+$VFD->output('Testing'.PHP_EOL.'My Display');
+
+// Output a blank line
+$VFD->output(PHP_EOL.PHP_EOL);
+
+// Scroll some text
+$VFD->auto_scroll(VFD::AUTO_SCROLL_HORIZONTAL, 2);
+$VFD->output('Controlling the Noritake GU256x64D-7000 VFD in PHP is fun!');
+
+// Turn scroll mode back to normal
+$VFD->auto_scroll(VFD::AUTO_SCROLL_WRAP);
+
+// Fade out
+for($i = 8; $i >= 0; $i--)
+{
+  usleep(3000);
+  $VFD->brightness($i);
+}
+
+// Fade in
+for($i = 0; $i <= 8; $i++)
+{
+  usleep(3000);
+  $VFD->brightness($i);
+}
+
+// Output a blank line and some inverse text
+$VFD->output(PHP_EOL.PHP_EOL);
+$VFD->inverse(TRUE);
+$VFD->output('Testing'.PHP_EOL.'My Display');
+
+// Output a blank line and some large text
+$VFD->output(PHP_EOL.PHP_EOL);
+$VFD->font(FALSE, TRUE, 2, 2);
+$VFD->output('Testing My Display');
+
+
+// Cleanup
+$GPIO->cleanup();

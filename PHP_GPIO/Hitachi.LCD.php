@@ -213,10 +213,6 @@ class LCD
   ----------------------------------------------------------------------------*/
   private function send_byte($value)
   {
-    // Check for nonsense
-    if(!is_numeric($value) || $value < 0 || $value > 255)
-      trigger_error('Invalid send_byte()', E_USER_ERROR);
-
     // Set high nibble
     $this->gpio->output($this->pins['D4'], ($value & 0b00010000) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
     $this->gpio->output($this->pins['D5'], ($value & 0b00100000) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
