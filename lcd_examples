@@ -5,7 +5,7 @@
   Some examples of how to use the Hitatchi.LCD driver
 --------------------------------------------------------------------------------
 
-  This is the 5v Hitachi HDD44780 or KS0066U Compatible LCD Pinout
+  This is the 5v Hitachi HDD44780 or KS0066U compatible LCD pinout
   in standard 4 bit wiring mode (works with most displays):
 
   LCD Pin  What it is       What pin you need to connect it to

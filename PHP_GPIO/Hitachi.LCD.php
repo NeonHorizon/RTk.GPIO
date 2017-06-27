@@ -228,10 +228,10 @@ class LCD
       $this->strobe();
 
     // Set low nibble
-    $this->gpio->output($this->pins[$this->bits == 4 ? 'D4' : 'D1'], ($value & 0b00000001) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
-    $this->gpio->output($this->pins[$this->bits == 4 ? 'D5' : 'D2'], ($value & 0b00000010) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
-    $this->gpio->output($this->pins[$this->bits == 4 ? 'D6' : 'D3'], ($value & 0b00000100) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
-    $this->gpio->output($this->pins[$this->bits == 4 ? 'D7' : 'D4'], ($value & 0b00001000) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
+    $this->gpio->output($this->pins[$this->bits == 4 ? 'D4' : 'D0'], ($value & 0b00000001) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
+    $this->gpio->output($this->pins[$this->bits == 4 ? 'D5' : 'D1'], ($value & 0b00000010) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
+    $this->gpio->output($this->pins[$this->bits == 4 ? 'D6' : 'D2'], ($value & 0b00000100) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
+    $this->gpio->output($this->pins[$this->bits == 4 ? 'D7' : 'D3'], ($value & 0b00001000) > 0 ? $this->gpio::HIGH : $this->gpio::LOW);
 
     // Strobe data
     $this->strobe();

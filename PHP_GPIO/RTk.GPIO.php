@@ -14,7 +14,7 @@ class GPIO
 {
   // Board info
   const RPI_REVISION = 3;
-  const VERSION = 'RTk_GPIO 1.1.0';
+  const VERSION = 'RTk_GPIO 1.1.1';
 
   // Pin Numbering
   const BCM = 0;
