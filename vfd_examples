@@ -56,7 +56,7 @@
                                    Create a window, window is 1 to 4, x is 0 to 511, y is 0 to 7, width is 1 to 512, height is 1 to 8
     window_delete($window)         Delete window, window should be between 1 and 4
 
-    import_xbm($file)              Converts an xbm image file into the VDF display format
+    import_xbm($file)              Converts an xbm image file (up to 512 x 64) into the VDF display format
     image($image)                  Displays an image imported using import_xbm()
 
 --------------------------------------------------------------------------------
