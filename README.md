@@ -2,7 +2,7 @@ RTk.GPIO PHP
 ============
 
 - **Description:** PHP drivers for the Ryanteck RTk.GPIO interface
-- **Project Website:** [GitHub](https://github.com/NeonHorizon/RTk.PHP)
+- **Project Website:** [GitHub](https://github.com/NeonHorizon/RTk.GPIO)
 - **Requirements:** An Ubuntu Linux installation or equivalent
 - **License:** GPL Version 3
 
