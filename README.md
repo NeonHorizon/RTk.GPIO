@@ -18,8 +18,6 @@ One of the reasons for its existence is PHP is particularly suited to making web
 
 Included is an LCD driver for the common LCD's on the market as well as a driver for the Noritake GU256x64D-7000 Matrix VFD
 
-![RTk.GPIO](https://ryanteck.uk/671-large_default/rtkgpio.jpg)
-
 ---
 
 ### Installation instructions
@@ -45,11 +43,6 @@ Presumably you already have PHP installed but if you don't install it:
 Current Ubuntu:
 ```
 sudo apt -y install php-cli
-```
-
-Ubuntu 14.04:
-```
-sudo apt-get -y install php5-cli
 ```
 
 ---
@@ -110,8 +103,4 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with this program.  If not, see [http://www.gnu.org/licenses/](http://www.gnu.org/licenses/).
 
----
-
-### Credits
-[Daniel Bull](https://google.com/+DanielBull)
 
